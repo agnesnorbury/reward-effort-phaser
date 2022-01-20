@@ -332,7 +332,7 @@ var effortOutcome = function() {
                                 this.player.sprite.anims.play('float', true);    
                                 this.player.sprite.setVelocityX(playerVelocity/3);
                                 this.time.addEvent({ delay: 150, 
-                                                     callback: function(){this.player.sprite.setVelocityY(-220);},
+                                                     callback: function(){this.player.sprite.setVelocityY(-230);},
                                                      callbackScope: this, 
                                                      repeat: 5 });
                             },
@@ -406,7 +406,7 @@ var effortOutcome = function() {
                                 // and progress via bridge route (with sad face)
                                 this.player.sprite.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
                                     // player progresses via bridge and earns no extra reward
-                                    this.player.sprite.setVelocityX(playerVelocity/4);   // /5,6
+                                    this.player.sprite.setVelocityX(playerVelocity/5);   // /5,6
                                     this.player.sprite.anims.play('sadrun', true);
                                     this.physics.add.collider(this.player.sprite, this.bridgeEndPoint, 
                                                               function(){eventsCenter.emit('bumpme');}, null, this); 
