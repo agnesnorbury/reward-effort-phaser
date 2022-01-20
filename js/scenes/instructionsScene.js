@@ -60,15 +60,7 @@ export default class InstructionsScene extends Phaser.Scene {
 
                         "At regular points along your journey,\n"+
                         "you will have to [color=#d0f4f7]make a choice[/color] between\n" +
-                        "different routes across the water.\n\n" //+
-
-//                        "You can always choose to go the [color=#d0f4f7]easy way[/color],\n"+
-//                        "across the bridge.\n\n"+
-//
-//                        "Alternatively, you can choose to\n"+
-//                        "try and cross by the [color=#d0f4f7]high route[/color],\n"+
-//                        "across the sky!\n\n"
-                      );
+                        "[color=#d0f4f7]different routes[/color] across the water.\n\n");
         var buttonTxt = "next page";
         var pageNo = 1;
         this.instructionsPanel = new InstructionsPanel(this, 
@@ -77,20 +69,15 @@ export default class InstructionsScene extends Phaser.Scene {
         
         ///////////////////PAGE TWO////////////////////
         eventsCenter.once('page1complete', function () {
-            mainTxt = ("Different routes  \n"+
-                       "that you can [img=coin] [color=#FFD700]collect coins[/color] [img=coin],\n" +
+            mainTxt = ("    Different routes give you the chance to    \n"+
+                       "collect different numbers of [img=coin] [color=#FFD700]coins[/color] [img=coin],\n" +
                        "which will be converted to bonus reward\n"+
-                       "at the end of the game.\n\n" +  
+                       "at the end of the game!\n\n" +  
 
-                       "However, taking the high route is harder,\n"+
-                       "and you will have to [img=button] [color=#e45404]power up[/color] [img=button]\n"+
-                       "your magic umbrella in order to fly across!\n\n" + 
-
-                       "Different rivers and streams require \n"+
-                       "[color=#e45404]different amounts of power[/color] to cross,\n" +
-                       "and have [color=#FFD700]different numbers of coins[/color]\n"+
-                       "that you can collect.\n\n"
-                      );
+                       "However, different routes also require\n"+
+                       "different amounts of [img=button] [color=#e45404]power[/color] [img=button]\n"+
+                       "to your magic umbrella,\n"+
+                       "in order to get across...\n\n");
             pageNo = 2;
             this.instructionsPanel = new InstructionsPanel(this, 
                                                            gameWidth/2, gameHeight/2,
@@ -100,16 +87,16 @@ export default class InstructionsScene extends Phaser.Scene {
         ///////////////////PAGE THREE////////////////////
         eventsCenter.once('page2complete', function () {
             mainTxt = ("  It is therefore up to you to decide  \n"+
-                       "  at each crossing point, whether you think  \n" +
-                       "it is worth trying the high route.\n\n" +  
+                       "  at each crossing whether you think  \n" +
+                       "it is worth trying the [color=#d0f4f7]high route[/color],\n"+
+                       "  or if you prefer to take the [color=#d0f4f7]low route[/color].  \n\n" +  
 
                        "Remember, you will earn a\n" +
                        "[color=#FFD700]real bonus payment[/color], depending on \n"+
                        "how many coins you collect!\n\n" +                             
 
                        " When you are ready,\n" +
-                       "press [u]start[/u] to begin!\n\n"
-                      );
+                       "press [u]start[/u] to begin.\n\n");
             buttonTxt = "start game"
             pageNo = 3;
             this.instructionsPanel = new InstructionsPanel(this, 
