@@ -10,9 +10,9 @@ import BreakPanel from "../elements/takeABreak.js";
 // import our custom events center for passsing info between scenes
 import eventsCenter from '../eventsCenter.js'
 
-//// import some js from Pavlovia lib to enable data saving [for Pavlovia deployment]
-//import * as data from "../../lib/data-2020.2.js";
-//import { saveTrialData } from '../util.js';
+// import some js from Pavlovia lib to enable data saving [for Pavlovia deployment]
+import * as data from "../../lib/data-2020.2.js";
+import { saveTrialData } from '../util.js';
 
 // initialize some global game vars
 var gameHeight;
@@ -210,19 +210,19 @@ export default class MainTask extends Phaser.Scene {
         // once this event us detected, perform the function trialEnd (only once)
         eventsCenter.once('trialEndHit', trialEnd, this);
         
-//        // 3. if desired, add listener functions to pause game when focus taken away
-//        // from game browser tab/window [necessary for mobile devices]
-//        window.addEventListener('blur', () => { 
-//            console.log('pausing game content...'); 
-//            this.scene.pause();
-//        }, false);
-//        // and resume when focus returns
-//        window.addEventListener('focus', () => { 
-//            setTimeout( () => { 
-//                console.log('resuming game content...'); 
-//                this.scene.resume();
-//            }, 250); 
-//        }, false);
+        // 3. if desired, add listener functions to pause game when focus taken away
+        // from game browser tab/window [necessary for mobile devices]
+        window.addEventListener('blur', () => { 
+            console.log('pausing game content...'); 
+            this.scene.pause();
+        }, false);
+        // and resume when focus returns
+        window.addEventListener('focus', () => { 
+            setTimeout( () => { 
+                console.log('resuming game content...'); 
+                this.scene.resume();
+            }, 250); 
+        }, false);
     }
     
     update(time, delta) {
@@ -438,8 +438,8 @@ var trialEnd = function () {
                                      });
     console.log(this.registry.getAll());   // for debugging only
     
-//    // For the sake of simplicity, save data for each trial separately
-//    saveTrialData(this.registry.get(`trial${trial}`));    // [for Pavlovia deployment]
+    // For the sake of simplicity, save data for each trial separately
+    saveTrialData(this.registry.get(`trial${trial}`));    // [for Pavlovia deployment]
     
     // if end of block, display end of block screen
     if (((trial+1) % blockLength == 0)) {

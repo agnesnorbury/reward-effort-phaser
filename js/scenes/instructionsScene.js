@@ -6,15 +6,15 @@ import InstructionsPanel from "../elements/instructionsPanel.js";
 // import our custom events centre for passsing info between scenes
 import eventsCenter from '../eventsCenter.js';
 
-//// import some js from Pavlovia lib to enable data saving [Pavlovia deployment only]
-//import * as data from "../../lib/data-2020.2.js";
-//import { PsychoJS } from '../../lib/core-2020.2.js';
-//
-//// some initial things that need to be in the first scene for Pavlovia deployment to work
-//// skip built-in error intercept
-//PsychoJS.prototype._captureErrors = () => {};
-//// initialise PsychoJS object for saving task data
-//window.psychoJS = new PsychoJS({ debug: true });  // attached to window object so as to be globally available (across scenes)
+// import some js from Pavlovia lib to enable data saving [Pavlovia deployment only]
+import * as data from "../../lib/data-2020.2.js";
+import { PsychoJS } from '../../lib/core-2020.2.js';
+
+// some initial things that need to be in the first scene for Pavlovia deployment to work
+// skip built-in error intercept
+PsychoJS.prototype._captureErrors = () => {};
+// initialise PsychoJS object for saving task data
+window.psychoJS = new PsychoJS({ debug: true });  // attached to window object so as to be globally available (across scenes)
 
 // this function extends Phaser.Scene and includes the core logic for the scene
 export default class InstructionsScene extends Phaser.Scene {
@@ -24,13 +24,13 @@ export default class InstructionsScene extends Phaser.Scene {
             autoStart: true
         });
         
-//        (async function startPsychoJS() {
-//        // The experiment handler needed to save our data would
-//        // be inaccessible before this call resolves. Because of
-//        // a bug in PsychoJS, please make `expInfo` an empty object
-//        // instead of skipping if not required
-//        await psychoJS.start({ expName: 'Reward-effort game demo', expInfo: {} })
-//        })(); // [Pavlovia deployment only]
+        (async function startPsychoJS() {
+        // The experiment handler needed to save our data would
+        // be inaccessible before this call resolves. Because of
+        // a bug in PsychoJS, please make `expInfo` an empty object
+        // instead of skipping if not required
+        await psychoJS.start({ expName: 'Reward-effort game demo', expInfo: {} })
+        })(); // [Pavlovia deployment only]
     }
 
     preload() {

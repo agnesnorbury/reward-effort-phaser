@@ -21,8 +21,6 @@ export default class ChoicePanel {
               '[color=#FFD700]'+trialReward2+' coins[/color]\n'+
               '[color=#1ea7e1]'+trialEffort1+' power-ups[/color]    '+
               '[color=#1ea7e1]'+trialEffort2+' power-ups[/color]');
-//              ' Press the "accept" button to try the high route,\n'+
-//              ' and the "reject" button to stick with the bridge.';
     backgrCol = 0x815532;
     titleCol = 0xf57f17;
     buttonCol = 0xf57f17;

@@ -22,7 +22,7 @@ const config = {
         createContainer: true    // to allow text input DOM element
     },
     backgroundColor: "#d0f4f7",  // pale blue sky color [black="#222222"],
-    scene: [//InstructionsScene, 
+    scene: [InstructionsScene, 
             MainTask, 
             TaskEndScene,
             PostTaskQuestions,

@@ -1,7 +1,7 @@
 // End scene to inform participants they have finished the task, and route them to the post-task questions
 
-//// import some js from Pavlovia lib to enable data saving  [Pavlovia deployment only]
-//import * as data from "../../lib/data-2020.2.js";
+// import some js from Pavlovia lib to enable data saving  [Pavlovia deployment only]
+import * as data from "../../lib/data-2020.2.js";
 
 // this function extends Phaser.Scene and includes the core logic for the scene
 export default class TaskEndScene extends Phaser.Scene {
