@@ -440,6 +440,7 @@ var trialEnd = function () {
     
     // if end of block, display end of block screen
     if (((trial+1) % blockLength == 0)) {
+        this.player.sprite.setVelocityX(0);
         this.player.sprite.anims.play('wait', true);
         this.breakPanel = new BreakPanel(this, mapWidth-gameWidth/2, 300, nCoins);
         this.events.once('breakover', function () {
