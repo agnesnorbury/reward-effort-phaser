@@ -86,8 +86,8 @@ export default class TaskEndScene extends Phaser.Scene {
         
         // control action button functionality (click, hover)
         EoT
-        .on('button.click', function (button) {
-            instr.scaleDownDestroy(500);
+        .once('button.click', function (button) {
+            EoT.scaleDownDestroy(500);
             this.nextScene();                           
         }, this)
         .on('button.over', function (button) {
