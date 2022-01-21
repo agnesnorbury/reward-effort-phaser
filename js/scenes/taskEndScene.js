@@ -104,6 +104,17 @@ export default class TaskEndScene extends Phaser.Scene {
             x: { value: 700, duration: 4000, ease: 'Power2', repeat: 0 },
             y: { value: 400, duration: 6000, ease: 'Linear', repeat: 0 }
             });
+        
+        // stop play/pause behaviour as don't need it any more and seems to lead to weirdness
+        window.addEventListener('blur', () => { 
+            console.log('not pausing game content...'); 
+        }, false);
+        // and resume when focus returns
+        window.addEventListener('focus', () => { 
+            setTimeout( () => { 
+                console.log('not resuming game content...'); 
+            }, 250); 
+        }, false);
     }
     
     update(time, delta) {
