@@ -100,11 +100,11 @@ export default class TaskEndScene extends Phaser.Scene {
         
         // let's stick an img on too
         const img = this.add.image(0, 0, 'player', 14);  //(x, y, name, frameNo)
-        const player = this.tweens.add({ 
-            targets: img,
-            x: { value: 700, duration: 4000, ease: 'Power2', repeat: 0 },
-            y: { value: 400, duration: 6000, ease: 'Linear', repeat: 0 }
-            });
+//        const player = this.tweens.add({ 
+//            targets: img,
+//            x: { value: 700, duration: 4000, ease: 'Power2', repeat: 0 },
+//            y: { value: 400, duration: 6000, ease: 'Linear', repeat: 0 }
+//            });
     }
     
     update(time, delta) {
