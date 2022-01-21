@@ -76,7 +76,7 @@ export default class PostTaskQuestions extends Phaser.Scene {
     }
     
     nextScene() {
-        console.log(psychoJS);         // check passing PsychoJS exp object between scenes worked
+        //console.log(psychoJS);         // check passing PsychoJS exp object between scenes worked
         psychoJS.experiment.save();    // saves all experiment data and signals exp end to Pavlovia
         this.scene.start('TheEnd');
     } 

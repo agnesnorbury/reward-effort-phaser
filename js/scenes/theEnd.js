@@ -78,18 +78,17 @@ export default class TheEnd extends Phaser.Scene {
         .layout()
         .popUp(500);
         
-        //control action button functionality (click, hover)
-        instr
-        .on('button.click', function (button) {
-            instr.scaleDownDestroy(500);
-            this.nextScene();                           
-        }, this)
-        .on('button.over', function (button) {
-            button.getElement('background').setStrokeStyle(2, 0xffffff);
-        })
-        .on('button.out', function (button) {
-            button.getElement('background').setStrokeStyle();
-        });
+//        //control action button functionality (click, hover)
+//        instr
+//        .on('button.click', function (button) {
+//            instr.scaleDownDestroy(500);                         
+//        }, this)
+//        .on('button.over', function (button) {
+//            button.getElement('background').setStrokeStyle(2, 0xffffff);
+//        })
+//        .on('button.out', function (button) {
+//            button.getElement('background').setStrokeStyle();
+//        });
         
 //        // let's stick an img on too
 //        const img = this.add.image(0, 0, 'player', 14);  //(x, y, name, frameNo)
