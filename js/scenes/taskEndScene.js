@@ -8,7 +8,7 @@ export default class TaskEndScene extends Phaser.Scene {
     constructor() {
         super({
             key: 'TaskEndScene',
-            autoStart: true
+            //autoStart: true
         });
     }
 

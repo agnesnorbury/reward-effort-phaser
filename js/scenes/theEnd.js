@@ -5,7 +5,7 @@ export default class TheEnd extends Phaser.Scene {
     constructor() {
         super({
             key: 'TheEnd',
-            autoStart: true
+            //autoStart: true
         });
     }
 

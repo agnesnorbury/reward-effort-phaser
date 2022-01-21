@@ -15,7 +15,7 @@ export default class PostTaskQuestions extends Phaser.Scene {
     constructor() {
         super({
             key: 'PostTaskQuestions',
-            autoStart: true
+            //autoStart: true
         });
     }
 
