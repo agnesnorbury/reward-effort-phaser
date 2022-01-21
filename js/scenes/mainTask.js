@@ -116,7 +116,7 @@ export default class MainTask extends Phaser.Scene {
         for (var i = 0; i < 5; i++) {
             var x = Phaser.Math.RND.between(0, mapWidth);
             var y = gameHeight/2 + 40;        // only at ground height
-            if ( x <  280 || x > 980) {       // only place on grass tiles
+            if ( x <  280 || x > 990) {       // only place on grass tiles
                 this.bushes.create(x, y, 'bush').setScale(0.5).refreshBody();
             }
         }
@@ -256,7 +256,7 @@ var displayChoicePanel = function () {
     this.coins2 = new Coins(this, midbridgeX-(trialReward2*30)/2, 285, trialReward2); // coins on bridge
     
     // popup choice panel with relevant trial info
-    this.choicePanel = new ChoicePanel(this, decisionPointX+40, gameHeight/2-30, 
+    this.choicePanel = new ChoicePanel(this, decisionPointX+40, gameHeight/2-100, 
                                        trialReward1, trialEffort1, trialReward2, trialEffort2); 
     
     // once choice is entered, get choice info and route to relevant next step
