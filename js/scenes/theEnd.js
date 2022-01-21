@@ -4,18 +4,13 @@
 export default class TheEnd extends Phaser.Scene {
     constructor() {
         super({
-            key: 'TheEnd',
-            //autoStart: true
+            key: 'TheEnd'
         });
     }
 
     preload() {
         // load cloud sprites to add texture to background
         this.load.image('cloud1', './assets/imgs/cloud1.png');
-        // load player sprite
-        this.load.spritesheet('player', './assets/spritesheets/player1.png', { 
-            frameWidth: 90, 
-            frameHeight: 96});
     }
     
     create() {
@@ -25,7 +20,7 @@ export default class TheEnd extends Phaser.Scene {
         const cloud3 = this.add.sprite(630, 80, 'cloud1');
         
         // add popup dialogue box with text
-        var instr = this.rexUI.add.dialog({
+        var byebye = this.rexUI.add.dialog({
             background: this.rexUI.add.roundRectangle(0, 0, 400, 400, 20, 0x1ea7e1),
             title: this.rexUI.add.label({
                 background: this.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x000000),
@@ -73,30 +68,10 @@ export default class TheEnd extends Phaser.Scene {
         //control panel position and layout
         var gameHeight = this.sys.game.config.height;
         var gameWidth = this.sys.game.config.width;
-        instr
+        byebye
         .setPosition(gameWidth/2, gameHeight/2)
         .layout()
         .popUp(500);
-        
-//        //control action button functionality (click, hover)
-//        instr
-//        .on('button.click', function (button) {
-//            instr.scaleDownDestroy(500);                         
-//        }, this)
-//        .on('button.over', function (button) {
-//            button.getElement('background').setStrokeStyle(2, 0xffffff);
-//        })
-//        .on('button.out', function (button) {
-//            button.getElement('background').setStrokeStyle();
-//        });
-        
-//        // let's stick an img on too
-//        const img = this.add.image(0, 0, 'player', 14);  //(x, y, name, frameNo)
-//        this.tweens.add({ 
-//            targets: img,
-//            x: { value: 700, duration: 4000, ease: 'Power2', repeat: 0 },
-//            y: { value: 400, duration: 6000, ease: 'Linear', repeat: 0 }
-//            });
     }
     
     update(time, delta) {

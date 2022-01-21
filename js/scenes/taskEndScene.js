@@ -7,8 +7,7 @@ import * as data from "../../lib/data-2020.2.js";
 export default class TaskEndScene extends Phaser.Scene {
     constructor() {
         super({
-            key: 'TaskEndScene',
-            //autoStart: true
+            key: 'TaskEndScene'
         });
     }
 
@@ -28,7 +27,7 @@ export default class TaskEndScene extends Phaser.Scene {
         const cloud3 = this.add.sprite(630, 80, 'cloud1');
         
         // add popup dialogue box with text
-        var instr = this.rexUI.add.dialog({
+        var EoT = this.rexUI.add.dialog({
             background: this.rexUI.add.roundRectangle(0, 0, 400, 400, 20, 0x1ea7e1),
             title: this.rexUI.add.label({
                 background: this.rexUI.add.roundRectangle(0, 0, 100, 40, 20, 0x000000),
@@ -80,14 +79,14 @@ export default class TaskEndScene extends Phaser.Scene {
         // control panel position and layout
         var gameHeight = this.sys.game.config.height;
         var gameWidth = this.sys.game.config.width;
-        instr
+        EoT
         .setPosition(gameWidth/2, gameHeight/2)
         .layout()
         .popUp(500);
         
         // control action button functionality (click, hover)
-        instr
-        .on('button.click', function (button) {
+        EoT
+        .once('button.click', function (button) {
             instr.scaleDownDestroy(500);
             this.nextScene();                           
         }, this)
@@ -100,11 +99,11 @@ export default class TaskEndScene extends Phaser.Scene {
         
         // let's stick an img on too
         const img = this.add.image(0, 0, 'player', 14);  //(x, y, name, frameNo)
-//        const player = this.tweens.add({ 
-//            targets: img,
-//            x: { value: 700, duration: 4000, ease: 'Power2', repeat: 0 },
-//            y: { value: 400, duration: 6000, ease: 'Linear', repeat: 0 }
-//            });
+        const player = this.tweens.add({ 
+            targets: img,
+            x: { value: 700, duration: 4000, ease: 'Power2', repeat: 0 },
+            y: { value: 400, duration: 6000, ease: 'Linear', repeat: 0 }
+            });
     }
     
     update(time, delta) {

@@ -14,8 +14,7 @@ var img;
 export default class PostTaskQuestions extends Phaser.Scene {
     constructor() {
         super({
-            key: 'PostTaskQuestions',
-            //autoStart: true
+            key: 'PostTaskQuestions'
         });
     }
 
@@ -47,7 +46,7 @@ export default class PostTaskQuestions extends Phaser.Scene {
         img.setScale(2);
         
         ///////////////////QUESTION TWO////////////////////
-        this.events.on(gamePhase+'question1complete', function () {
+        this.events.once(gamePhase+'question1complete', function () {
             img.destroy();
             saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
             mainTxt = 'How happy were you when you collected a coin?\n\n\n\n\n\n'+
@@ -64,7 +63,7 @@ export default class PostTaskQuestions extends Phaser.Scene {
         }, this);        
         
         // end scene
-        this.events.on(gamePhase+'question2complete', function () {
+        this.events.once(gamePhase+'question2complete', function () {
             img.destroy();
             saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
             this.nextScene();
