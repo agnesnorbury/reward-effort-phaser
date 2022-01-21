@@ -249,6 +249,7 @@ var displayChoicePanel = function () {
     choicePopupTime = this.time.now; 
     // update some stuff (stop player moving and remove decisionPoint sprite)
     this.player.sprite.setVelocityX(0);
+    this.player.sprite.anims.play('wait', true); 
     this.decisionPoint.destroy();
     
     // display reward coins for each option
@@ -273,9 +274,7 @@ var doChoice = function () {
     
     // if participant chooses the high effort option
     if (choice == 'high route') {      
-        // during this time, play player waiting animation:
-        this.player.sprite.anims.play('wait', true); 
-        // then, timer panel popup  
+        // timer panel pops up  
         this.timerPanel = new TimerPanel(this, decisionPointX+20, gameHeight/2-160, effortTime, trialEffort1) 
         // and play player 'power-up' animation
         this.player.sprite.anims.play('powerup', true);
@@ -283,9 +282,7 @@ var doChoice = function () {
         eventsCenter.once('timesup', effortOutcome, this)
         }
     else {  // if participant chooses the low effort option
-        // during this time, play player waiting animation:
-        this.player.sprite.anims.play('wait', true); 
-        // then, timer panel popup  
+        // timer panel pops up  
         this.timerPanel = new TimerPanel(this, decisionPointX+20, gameHeight/2-160, effortTime, trialEffort2) 
         // and play player 'power-up' animation
         this.player.sprite.anims.play('powerup', true);
