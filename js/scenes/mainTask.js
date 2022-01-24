@@ -1,4 +1,4 @@
-// Scene to hold the task. Routes to 'Next Stage' Scene 1
+// Scene to hold the task. Routes to Task End Scene
 
 // import js game element modules (sprites, ui, outcome animations, etc.)
 import Player from "../elements/player.js";
@@ -213,13 +213,13 @@ export default class MainTask extends Phaser.Scene {
         // 3. if desired, add listener functions to pause game when focus taken away
         // from game browser tab/window [necessary for mobile devices]
         window.addEventListener('blur', () => { 
-            console.log('pausing game content...'); 
+            //console.log('pausing game content...');      // useful for debugging pause/resume
             this.scene.pause();
         }, false);
         // and resume when focus returns
         window.addEventListener('focus', () => { 
             setTimeout( () => { 
-                console.log('resuming game content...'); 
+                //console.log('resuming game content...'); 
                 this.scene.resume();
             }, 250); 
         }, false);
@@ -403,7 +403,7 @@ var effortOutcome = function() {
                                 // and progress via bridge route (with sad face)
                                 this.player.sprite.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
                                     // player progresses via bridge and earns no extra reward
-                                    this.player.sprite.setVelocityX(playerVelocity/5);   // /5,6
+                                    this.player.sprite.setVelocityX(playerVelocity/5);   // 5,6
                                     this.player.sprite.anims.play('sadrun', true);
                                     this.physics.add.collider(this.player.sprite, this.bridgeEndPoint, 
                                                               function(){eventsCenter.emit('bumpme');}, null, this); 

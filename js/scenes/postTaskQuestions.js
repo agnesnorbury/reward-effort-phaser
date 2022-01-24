@@ -1,4 +1,4 @@
-// Scene to hold post-task questions, routes participants to the study end scene
+// Scene to hold post-task questions, routes participants to the Game End scene
 
 // import js game element modules (sprites, ui, outcome animations)
 import QuestionPanel from "../elements/questionPanel.js";
