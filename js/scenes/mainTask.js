@@ -47,6 +47,7 @@ var pressTimes;
 var trialSuccess;
 var trialEndTime;
 const effortTime = 5000;       // time participant will have to try and exert effort (ms)
+const practiceOrReal = 1;
 
 // this function extends Phaser.Scene and includes the core logic for the game
 export default class MainTask extends Phaser.Scene {

@@ -7,14 +7,14 @@ import eventsCenter from '../eventsCenter.js'
 var backgrCol; var titleCol; var buttonCol;
 
 export default class InstructionsPanel {
-    constructor(scene, x, y, pageNo, mainTxt, buttonTxt) {
+    constructor(scene, x, y, pageNo, titleTxt, mainTxt, buttonTxt) {
     this.scene = scene;
     
     backgrCol = 0x1ea7e1;
     titleCol = 0x000000;
     buttonCol = 0x5e81a2;
 
-    var instrPanel = createInstrPanel(scene, pageNo, mainTxt, buttonTxt)
+    var instrPanel = createInstrPanel(scene, pageNo, titleTxt, mainTxt, buttonTxt)
         .setPosition(x, y)
         .layout()
         .popUp(500); 
@@ -23,9 +23,9 @@ export default class InstructionsPanel {
 
 ////////////////////functions for making in-scene graphics//////////////////////////
 ///////////main panel////////////
-var createInstrPanel = function (scene, pageNo, mainTxt, buttonTxt) {
+var createInstrPanel = function (scene, pageNo, titleTxt, mainTxt, buttonTxt) {
     // create panel components
-    var dialog = createDialog(scene, pageNo, mainTxt, buttonTxt);
+    var dialog = createDialog(scene, pageNo, titleTxt, mainTxt, buttonTxt);
     var mainPanel = scene.rexUI.add.fixWidthSizer({
         orientation: 'x' //vertical stacking
         }).add(
@@ -53,13 +53,13 @@ var createInstrPanel = function (scene, pageNo, mainTxt, buttonTxt) {
 };
 
 ///////////popup dialog box//////
-var createDialog = function (scene, pageNo, mainTxt, buttonTxt) {
+var createDialog = function (scene, pageNo, titleTxt, mainTxt, buttonTxt) {
     var textbox = scene.rexUI.add.dialog({
     background: scene.rexUI.add.roundRectangle(0, 0, 400, 400, 20, backgrCol),
     
     title: scene.rexUI.add.label({
         background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, titleCol),
-        text: scene.add.text(0, 0, 'Welcome to the game!', {
+        text: scene.add.text(0, 0, titleTxt, {
                     fontSize: '24px'
                     }),
         align: 'center',

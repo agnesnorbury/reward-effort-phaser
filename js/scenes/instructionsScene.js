@@ -29,7 +29,7 @@ export default class InstructionsScene extends Phaser.Scene {
         // be inaccessible before this call resolves. Because of
         // a bug in PsychoJS, please make `expInfo` an empty object
         // instead of skipping if not required
-        await psychoJS.start({ expName: 'Reward-effort game demo', expInfo: {} })
+        await psychoJS.start({ expName: 'Reward-effort game demo 2AFC', expInfo: {} })
         })(); // [Pavlovia deployment only]
     }
 
@@ -53,6 +53,8 @@ export default class InstructionsScene extends Phaser.Scene {
         var gameHeight = this.sys.game.config.height;
         var gameWidth = this.sys.game.config.width;
         
+        var titleText = 'Welcome to the game!'
+        
         // let's do this a long-winded way for easiness...[should be a function]
         ///////////////////PAGE ONE////////////////////
         var mainTxt = ("  You are travelling through a strange land,  \n"+
@@ -65,7 +67,7 @@ export default class InstructionsScene extends Phaser.Scene {
         var pageNo = 1;
         this.instructionsPanel = new InstructionsPanel(this, 
                                                        gameWidth/2, gameHeight/2,
-                                                       pageNo, mainTxt, buttonTxt);
+                                                       pageNo, titleText, mainTxt, buttonTxt);
         
         ///////////////////PAGE TWO////////////////////
         eventsCenter.once('page1complete', function () {
@@ -81,7 +83,7 @@ export default class InstructionsScene extends Phaser.Scene {
             pageNo = 2;
             this.instructionsPanel = new InstructionsPanel(this, 
                                                            gameWidth/2, gameHeight/2,
-                                                           pageNo, mainTxt, buttonTxt);
+                                                           pageNo, titleText, mainTxt, buttonTxt);
             }, this);
         
         ///////////////////PAGE THREE////////////////////
@@ -101,7 +103,7 @@ export default class InstructionsScene extends Phaser.Scene {
             pageNo = 3;
             this.instructionsPanel = new InstructionsPanel(this, 
                                                            gameWidth/2, gameHeight/2,
-                                                           pageNo, mainTxt, buttonTxt);
+                                                           pageNo, titleText, mainTxt, buttonTxt);
             }, this);
         
         // end scene
@@ -114,6 +116,6 @@ export default class InstructionsScene extends Phaser.Scene {
     }
     
     nextScene() {
-        this.scene.start('MainTask');
+        this.scene.start('PracticeTask');
     } 
 }

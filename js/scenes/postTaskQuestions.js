@@ -48,7 +48,7 @@ export default class PostTaskQuestions extends Phaser.Scene {
         ///////////////////QUESTION TWO////////////////////
         this.events.once(gamePhase+'question1complete', function () {
             img.destroy();
-            saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
+            //saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
             mainTxt = 'How happy were you when you collected a coin?\n\n\n\n\n\n'+
                       'Please rate from 0 to 100\n'+ 
                       'on the scale below, where\n\n'+
@@ -65,7 +65,7 @@ export default class PostTaskQuestions extends Phaser.Scene {
         // end scene
         this.events.once(gamePhase+'question2complete', function () {
             img.destroy();
-            saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
+            //saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
             this.nextScene();
         }, this);
         
@@ -76,7 +76,7 @@ export default class PostTaskQuestions extends Phaser.Scene {
     
     nextScene() {
         //console.log(psychoJS);         // check passing PsychoJS exp object between scenes worked
-        psychoJS.experiment.save();    // saves all experiment data and signals exp end to Pavlovia
+        //psychoJS.experiment.save();      // saves all experiment data and signals exp end to Pavlovia
         this.scene.start('TheEnd');
     } 
 }
