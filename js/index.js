@@ -1,6 +1,7 @@
 // import js modules that hold the game/experiment scenes
 import InstructionsScene from "./scenes/instructionsScene.js";
 import PracticeTask from "./scenes/practiceTask.js";
+import StartTaskScene from "./scenes/startTaskScene.js";
 import MainTask from "./scenes/mainTask.js";
 import TaskEndScene from "./scenes/taskEndScene.js";
 import PostTaskQuestions from "./scenes/postTaskQuestions.js";
@@ -25,6 +26,7 @@ const config = {
     backgroundColor: "#d0f4f7",  // pale blue sky color [black="#222222"],
     scene: [InstructionsScene,
             PracticeTask,
+            StartTaskScene,
             MainTask, 
             TaskEndScene,
             PostTaskQuestions,

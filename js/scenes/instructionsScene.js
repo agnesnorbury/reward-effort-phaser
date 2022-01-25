@@ -77,9 +77,9 @@ export default class InstructionsScene extends Phaser.Scene {
                        "at the end of the game!\n\n" +  
 
                        "However, different routes also require\n"+
-                       "different amounts of [img=button] [color=#e45404]power[/color] [img=button]\n"+
-                       "to your magic umbrella,\n"+
-                       "in order to get across...\n\n");
+                       "different amounts of [img=button] [color=#e45404]power[/color] [img=button] to\n"+
+                       "your magic umbrella, in order\n"+
+                       "to get across...\n\n");
             pageNo = 2;
             this.instructionsPanel = new InstructionsPanel(this, 
                                                            gameWidth/2, gameHeight/2,
@@ -94,12 +94,16 @@ export default class InstructionsScene extends Phaser.Scene {
                        "  or if you prefer to take the [color=#d0f4f7]low route[/color].  \n\n" +  
 
                        "Remember, you will earn a\n" +
-                       "[color=#FFD700]real bonus payment[/color], depending on \n"+
-                       "how many coins you collect!\n\n" +                             
+                       "[color=#FFD700]real bonus payment[/color], depending on how\n"+
+                       "many coins you collect!\n\n" +
+                       
+                       "Before you start the real game, you\n" +
+                       "will have a chance to practice\n"+
+                       "powering up your umbrella.\n\n" + 
 
                        " When you are ready,\n" +
-                       "press [u]start[/u] to begin.\n\n");
-            buttonTxt = "start game"
+                       "press [u]start practice[/u] to begin.\n");
+            buttonTxt = "start practice"
             pageNo = 3;
             this.instructionsPanel = new InstructionsPanel(this, 
                                                            gameWidth/2, gameHeight/2,

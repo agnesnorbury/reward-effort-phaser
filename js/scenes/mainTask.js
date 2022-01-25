@@ -165,11 +165,16 @@ export default class MainTask extends Phaser.Scene {
         let trialTypes = this.cache.json.get('trialTypes');
         nTrials = trialTypes.reward1.length;
         
+        // get max press count from practice/callibration round
+        let maxPressCount = this.registry.get('maxPressCount');
+        let maxEff = trialTypes.effort1.max;
+        var sf = maxPressCount/maxEff;
+        
         // set the two trial options info from trial number
         trialReward1 = trialTypes.reward1[trial];
-        trialEffort1 = trialTypes.effort1[trial];
+        trialEffort1 = Math.round(trialTypes.effort1[trial]*sf);
         trialReward2 = trialTypes.reward2[trial];
-        trialEffort2 = trialTypes.effort2[trial];
+        trialEffort2 = Math.round(trialTypes.effort2[trial]*sf);
         
         // log trial start time
         trialStartTime = Math.round(this.time.now);

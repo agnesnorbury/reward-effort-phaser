@@ -23,19 +23,21 @@ const decisionPointX = 370;    // where the info panel will be triggered (x coor
 const midbridgeX = 735;        // where gems will be displayed (x coord in px)
 const playerVelocity = 1000;   // baseline player velocity (rightward)
 // initialize practice task vars
+var pracTrial = 0;
+var nGems = 0;
 var nPracTrials = 5;
-var pracTrial=0;
 var pracTrialRewards = [2, 4, 6, 8, 10, 12];
-var pracTrialEfforts = [15, 18, 21, 24, 28];
+var pracTrialEfforts = [10, 15, 20, 25, 35];
+var gemHeights       = [315, 255, 195, 135, 75];
 var pracTrialReward;
 var pracTrialEffort;
-var nGems=0;
+var gemHeight;
 var gemText;
 var feedback;
 var pressCount;
 var pressTimes;
 var trialSuccess;
-var maxPressCount
+var maxPressCount;
 // initiliaze timing and response vars
 var pracFeedbackTime = 1500;
 const effortTime = 5000;        // time participant will have to try and exert effort (ms)
@@ -120,7 +122,7 @@ export default class PracticeTask extends Phaser.Scene {
         this.physics.world.bounds.height = gameHeight;
 
         //////////////ADD PLAYER SPRITE////////////////////
-        this.player = new Player(this, 0, 200); // (this, spawnPoint.x, spawnPoint.y);
+        this.player = new Player(this, 0, 300); // (this, spawnPoint.x, spawnPoint.y);
         this.physics.add.collider(this.player.sprite, platforms);    // player walks on platforms      
 
         //////////////CONTROL CAMERA///////////////////////
@@ -210,12 +212,13 @@ export default class PracticeTask extends Phaser.Scene {
         
         ////////////MOVE ON TO NEXT SCENE WHEN ALL TRIALS HAVE RUN////////////////
         if (pracTrial == nPracTrials) {
+            this.registry.set('maxPressCount', maxPressCount);
             this.nextScene();
         }
     }
     
     nextScene() {
-        this.scene.start('MainTask');
+        this.scene.start('StartTaskScene');
     }
 }
 
@@ -228,22 +231,22 @@ var displayInfoPanel = function () {
     this.decisionPoint.destroy();
     
     // display gems for this practice go - at a height proportional to the number of gems available
-    gemHeight = 350-200*(pracTrialReward/12);
+    gemHeight = gemHeights[pracTrial];
     this.gems = new Gems(this, midbridgeX-(pracTrialReward*30)/2, gemHeight, pracTrialReward); 
     
     // popup choice panel with relevant trial info
-    let titleTxt = "Time to practice!";
-    let mainTxt = ("Press the [color=#e45404]POWER[/color] button\n"+
-                   "as fast as you can, until the power bar\n"+
-                   "shows you are [color=#e45404]100% charged[/color] up.\n"+
-                   "Higher items will usually require\n"+
-                   "more power to reach.\n"+
+    let titleTxt = ("Practice "+(pracTrial+1)+" of "+nPracTrials+"!");
+    let mainTxt = ("Press the [color=#e45404]POWER[/color] button as\n"+
+                   "fast as you can, until the power bar\n"+
+                   "shows you are [color=#e45404]100% charged[/color].\n\n"+
+                   "More power will allow you to fly\n"+
+                   "higher and collect more gems!\n\n"+
                    "When you are ready,\n"+
                    "press the button below to start!");
     let buttonTxt = "ready";
     let pageNo = 4;
     this.instructionsPanel = new InstructionsPanel(this, 
-                                                   decisionPointX+40, gameHeight/2-100, 
+                                                   decisionPointX+40, gameHeight/2-120, 
                                                    pageNo, titleTxt, mainTxt, buttonTxt);
     
     // once choice is entered, get choice info and route to relevant next step
@@ -298,7 +301,7 @@ var effortOutcome = function() {
                                 this.player.sprite.anims.play('float', true);    
                                 this.player.sprite.setVelocityX(playerVelocity/3);
                                 this.time.addEvent({ delay: 150, 
-                                                     callback: function(){this.player.sprite.setVelocityY(180-gemHeight);},
+                                                     callback: function(){this.player.sprite.setVelocityY(-410+gemHeight);},
                                                      callbackScope: this, 
                                                      repeat: 5 });
                             },
@@ -334,11 +337,8 @@ var effortOutcome = function() {
                                 // and progress via bridge route (with sad face)
                                 this.player.sprite.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
                                     // player progresses via bridge and earns no extra reward
-                                    this.player.sprite.setVelocityX(playerVelocity/5);   // 5,6
-                                    this.player.sprite.anims.play('sadrun', true);
-                                    this.physics.add.collider(this.player.sprite, this.bridgeEndPoint, 
-                                                              function(){eventsCenter.emit('bumpme');}, null, this); 
-                                    eventsCenter.once('bumpme', onejump, this);
+                                    this.player.sprite.setVelocityX(playerVelocity/4);   // 4,5,6
+                                    this.player.sprite.anims.play('run', true);
                                     });
                             },                         
                             callbackScope: this});
@@ -371,7 +371,7 @@ var pracTrialEnd = function () {
     console.log(this.registry.getAll());   // for debugging only
     
     // For the sake of simplicity, save data for each trial separately
-    saveTrialData(this.registry.get(`trial${trial}`));    // [for Pavlovia deployment]
+    saveTrialData(this.registry.get(`pracTrial${pracTrial}`));    // [for Pavlovia deployment]
     
     // iterate trial number
     pracTrial++; 
