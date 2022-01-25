@@ -353,9 +353,10 @@ var pracTrialEnd = function () {
     // determine if pressCount exceeded previous practice trials
     if (pracTrial == 0) {
         maxPressCount = pressCount;
-        this.registry.get("pracTrial"+pracTrial-1, {pressCount}); console.log(maxPressCount);
+        this.registry.set("pracTrial"+pracTrial, {maxPressCount: maxPressCount});
     } else if (pressCount > this.registry.get("pracTrial"+pracTrial-1, {pressCount})) {    
-       maxPressCount = pressCount; 
+       maxPressCount = pressCount;
+       this.registry.set("pracTrial"+pracTrial, {maxPressCount: maxPressCount});
     }
     // set data to be saved into registry
     this.registry.set("pracTrial"+pracTrial, {pracTrialNo: pracTrial, 
@@ -364,8 +365,7 @@ var pracTrialEnd = function () {
                                               pressCount: pressCount,
                                               pressTimes: pressTimes,
                                               trialSuccess: trialSuccess,
-                                              nGems: nGems,
-                                              maxPressCount: maxPressCount
+                                              nGems: nGems
                                              });
 
     console.log(this.registry.getAll());   // for debugging only
