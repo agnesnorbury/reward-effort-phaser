@@ -4,7 +4,7 @@
 import eventsCenter from '../eventsCenter.js'
 
 export default class TimerPanel {
-    constructor(scene, x, y, timeLimit, trialEffort) {
+    constructor(scene, x, y, timeLimit, trialEffort, practiceOrReal) {
         this.scene = scene; 
         
         // initialize time left and press count variables (attach to scene to pass between elements)
@@ -14,23 +14,33 @@ export default class TimerPanel {
 
         // setup scene text
         var titleText = 'Power up!';
-        var timeText = ('You need to press the POWER button\n'+
-                        '[color=#e45404]'+trialEffort+' times[/color] in the next '+timeLimit/1000+' seconds!\n\n'+
-                        'Time left: '+(scene.timeLeft/1000).toFixed(2)+' seconds');
         var buttonText = 'POWER';
-
+        var timeText;
+        
+        // set main text depending if practice (callibration) or real (main task) trial
+        if (practiceOrReal == 0 ) {
+            timeText = ('Press the POWER button as fast\n'+
+                        ' as possible until you reach 100%!\n\n'+
+                        'Time left: '+(scene.timeLeft/1000).toFixed(2)+' seconds');
+            var backgrCol =  0x9c73ae;
+        } else {
+            timeText = ('You need to press the POWER button\n'+
+                        '[color=#1ea7e1]'+trialEffort+' times[/color] in the next '+timeLimit/1000+' seconds!\n\n'+
+                        'Time left: '+(scene.timeLeft/1000).toFixed(2)+' seconds');
+            var backgrCol = 0x2F4F4F;
+        }
         // initilize progress bar (full width)
         scene.fullWidth = 388;
         
         // create main panel (dialog box with text + countdown timer + interactive button + effort progress bar)
-        var mainPanel = createMainPanel(scene, titleText, timeText, buttonText)
+        var mainPanel = createMainPanel(scene, titleText, timeText, buttonText, trialEffort, backgrCol)
         .setPosition(x,y)
         .layout()
         .popUp(500); 
         
         // every 200ms call updateTimer function (to update 'time left' text in panel)
         var timedEvent = scene.time.addEvent({ delay: 200, callback: updateTimer, 
-                                               args: [scene, trialEffort, timeText, timeLimit, mainPanel],
+                                               args: [scene, trialEffort, timeText, timeLimit, mainPanel, practiceOrReal],
                                                callbackScope: this, repeat: 24 }); // repeat = (limit/delay)-1
         
         // and at end of time limit call endTimer function (to end timer panel scene)
@@ -43,13 +53,19 @@ export default class TimerPanel {
 }
 
 ////////////////////functions to be called by timer elements////////////////////////
-var updateTimer = function(scene, trialEffort, timeText, timeLimit, mainPanel) {
+var updateTimer = function(scene, trialEffort, timeText, timeLimit, mainPanel, practiceOrReal) {
     // update timer text
-    scene.timeLeft -= 200; 
-    timeText = ('You need to press the POWER button\n'+
-                '[color=#1ea7e1]'+trialEffort+' times[/color] in the next '+timeLimit/1000+' seconds!\n\n'+
-                'Time left: '+(scene.timeLeft/1000).toFixed(2)+' seconds'); 
-    mainPanel.children[0].children[1].setText(timeText);                 // = mainPanel.dialog.text (when dialog has no title)
+    scene.timeLeft -= 200;
+    if (practiceOrReal == 0 ) {
+        timeText = ('Press the POWER button as fast\n'+
+                    ' as possible until you reach 100%!\n\n'+
+                    'Time left: '+(scene.timeLeft/1000).toFixed(2)+' seconds');
+    } else {
+        timeText = ('You need to press the POWER button\n'+
+                    '[color=#1ea7e1]'+trialEffort+' times[/color] in the next '+timeLimit/1000+' seconds!\n\n'+
+                    'Time left: '+(scene.timeLeft/1000).toFixed(2)+' seconds');
+    }
+    mainPanel.children[0].children[1].setText(timeText);           // = mainPanel.dialog.text (when dialog has no title)
     // update effort progress bar
     mainPanel.children[1].setValue(scene.pressCount/trialEffort);  // = mainPanel.progressBar
 }
@@ -66,10 +82,10 @@ var endTimer = function(scene, mainPanel) {
 
 ////////////////////functions for making in-scene graphics//////////////////////////
 ///////////main panel////////////
-var createMainPanel = function (scene, titleText, timeText, buttonText, trialEffort) {
+var createMainPanel = function (scene, titleText, timeText, buttonText, trialEffort, backgrCol) {
     // create individual components
-    var dialog = createDialog(scene, titleText, timeText, buttonText);    // text + timer text + button
-    var progressBar = createProgressBar(scene, trialEffort);              // effort progress bar
+    var dialog = createDialog(scene, titleText, timeText, buttonText, backgrCol);    // text + timer text + button
+    var progressBar = createProgressBar(scene, trialEffort, backgrCol);              // effort progress bar
     // lay out together using a Sizer
     var mainPanel = scene.rexUI.add.fixWidthSizer({
         orientation: 'x' //'y' // x=vertical stacking, y=horizontal stacking
@@ -101,9 +117,9 @@ var createMainPanel = function (scene, titleText, timeText, buttonText, trialEff
 };
 
 ///////////popup dialog box/////////
-var createDialog = function (scene, titleText, mainText, buttonText) {
+var createDialog = function (scene, titleText, mainText, buttonText, backgrCol) {
     var textbox = scene.rexUI.add.dialog({
-        background: scene.rexUI.add.roundRectangle(0, 0, 400, 400, 20, 0x2F4F4F), 
+        background: scene.rexUI.add.roundRectangle(0, 0, 400, 400, 20, backgrCol), 
         content: scene.rexUI.add.BBCodeText(0, 0, mainText, {fontSize: '18px', align: 'center'}),
         space: {
             content: 30, 
@@ -162,14 +178,14 @@ var createButton = function (scene, text) {
 };
 
 ////////animated progress bar/////////
-var createProgressBar = function(scene, trialEffort){
+var createProgressBar = function(scene, trialEffort, backgrCol){
     var progressBar = scene.rexUI.add.numberBar({ 
         //height: 250,            // minimum height
         width: scene.fullWidth, 
         orientation: 'horizontal', //'vertical',  // minimum width
         //anchor: {bottom: 'top'},
 
-        background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x2F4F4F),
+        background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 20, backgrCol),
         icon: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 10, 0xe45404),
 
         slider: {
