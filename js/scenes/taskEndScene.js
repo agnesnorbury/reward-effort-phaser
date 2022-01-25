@@ -98,23 +98,12 @@ export default class TaskEndScene extends Phaser.Scene {
         });
         
         // let's stick an img on too
-        const img = this.add.image(0, 0, 'player', 14);  //(x, y, name, frameNo)
-        const player = this.tweens.add({ 
-            targets: img,
+        const playerimg = this.add.image(0, 0, 'player', 14);  //(x, y, name, frameNo)
+        const playertweens = this.tweens.add({ 
+            targets: playerimg,
             x: { value: 700, duration: 4000, ease: 'Power2', repeat: 0 },
             y: { value: 400, duration: 6000, ease: 'Linear', repeat: 0 }
             });
-        
-        // stop play/pause behaviour as don't need it any more and seems to lead to weirdness
-        window.addEventListener('blur', () => { 
-            console.log('not pausing game content...'); 
-        }, false);
-        // and resume when focus returns
-        window.addEventListener('focus', () => { 
-            setTimeout( () => { 
-                console.log('not resuming game content...'); 
-            }, 250); 
-        }, false);
     }
     
     update(time, delta) {

@@ -25,10 +25,10 @@ const playerVelocity = 1000;   // baseline player velocity (rightward)
 // initialize practice task vars
 var pracTrial = 0;
 var nGems = 0;
-var nPracTrials = 5;
-var pracTrialRewards = [2, 4, 6, 8, 10, 12];
+var pracTrialRewards = [2, 4, 6, 8, 10];
 var pracTrialEfforts = [10, 15, 20, 25, 35];
 var gemHeights       = [315, 255, 195, 135, 75];
+var nPracTrials = pracTrialRewards.length;
 var pracTrialReward;
 var pracTrialEffort;
 var gemHeight;
@@ -190,19 +190,19 @@ export default class PracticeTask extends Phaser.Scene {
         // once this event us detected, perform the function trialEnd (only once)
         eventsCenter.once('trialEndHit', pracTrialEnd, this);
         
-        // 3. if desired, add listener functions to pause game when focus taken away
-        // from game browser tab/window [necessary for mobile devices]
-        window.addEventListener('blur', () => { 
-            //console.log('pausing game content...');      // useful for debugging pause/resume
-            this.scene.pause();
-        }, false);
-        // and resume when focus returns
-        window.addEventListener('focus', () => { 
-            setTimeout( () => { 
-                //console.log('resuming game content...'); 
-                this.scene.resume();
-            }, 250); 
-        }, false);
+        // // 3. if desired, add listener functions to pause game when focus taken away
+        // // from game browser tab/window [necessary for mobile devices]
+        // window.addEventListener('blur', () => { 
+        //     //console.log('pausing game content...');      // useful for debugging pause/resume
+        //     this.scene.pause();
+        // }, false);
+        // // and resume when focus returns
+        // window.addEventListener('focus', () => { 
+        //     setTimeout( () => { 
+        //         //console.log('resuming game content...'); 
+        //         this.scene.resume();
+        //     }, 250); 
+        // }, false);
     }
     
     update(time, delta) {
@@ -301,7 +301,7 @@ var effortOutcome = function() {
                                 this.player.sprite.anims.play('float', true);    
                                 this.player.sprite.setVelocityX(playerVelocity/3);
                                 this.time.addEvent({ delay: 150, 
-                                                     callback: function(){this.player.sprite.setVelocityY(-410+gemHeight);},
+                                                     callback: function(){this.player.sprite.setVelocityY(-420+gemHeight);},
                                                      callbackScope: this, 
                                                      repeat: 5 });
                             },
@@ -349,14 +349,13 @@ var effortOutcome = function() {
 
 // 4. When player hits end of scene, save trial data and move on to the next trial (reload the scene)
 var pracTrialEnd = function () {
-    
     // determine if pressCount exceeded previous practice trials
     if (pracTrial == 0) {
         maxPressCount = pressCount;
-        this.registry.set("pracTrial"+pracTrial, {maxPressCount: maxPressCount});
-    } else if (pressCount > this.registry.get("pracTrial"+pracTrial-1, {pressCount})) {    
+        this.registry.set('maxPressCount', maxPressCount);
+    } else if ( pressCount > this.registry.get('maxPressCount') ) {    
        maxPressCount = pressCount;
-       this.registry.set("pracTrial"+pracTrial, {maxPressCount: maxPressCount});
+       this.registry.set('maxPressCount', maxPressCount);
     }
     // set data to be saved into registry
     this.registry.set("pracTrial"+pracTrial, {pracTrialNo: pracTrial, 
@@ -380,6 +379,7 @@ var pracTrialEnd = function () {
 };
 
 
+//////////////////////MISC FUNCTIONS/////////////////////
 // function to make coin sprites disappear upon contact with player
 // (so player appears to 'collect' them)
 var collectGems = function(player, gem){
