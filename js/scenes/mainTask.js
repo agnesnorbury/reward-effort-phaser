@@ -280,7 +280,7 @@ var doChoice = function () {
     choice = this.registry.get('choice');  
     
     // if participant chooses the high effort option
-    if (choice == 'high route') {      
+    if (choice == 'route 1') {      
         // timer panel pops up  
         this.timerPanel = new TimerPanel(this, decisionPointX+20, gameHeight/2-160, effortTime, trialEffort1, practiceOrReal) 
         // and play player 'power-up' animation
@@ -305,7 +305,7 @@ var effortOutcome = function() {
     pressTimes = this.registry.get('pressTimes');  // [?we want this - might make code run slow...]
     
     // if ppt chooses high effort and clears trial effort threshold, fly across sky and collect coins!
-    if (choice == 'high route' && pressCount >= trialEffort1) {
+    if (choice == 'route 1' && pressCount >= trialEffort1) {
         trialSuccess = 1;
         // add overlap colliders so coins  on either route disappear when overlap with player body
         this.physics.add.overlap(this.player.sprite, this.coins1.sprite, collectCoins, null, this); 
@@ -343,7 +343,7 @@ var effortOutcome = function() {
                             callbackScope: this});
     }
     // if ppt chooses low effect and clears trial effort threshold, fly across mid-sky and collect coins!
-    else if (choice == 'low route' && pressCount >= trialEffort2)  {
+    else if (choice == 'route 2' && pressCount >= trialEffort2)  {
         trialSuccess = 1;
         // add overlap colliders so coins  on either route disappear when overlap with player body
         this.physics.add.overlap(this.player.sprite, this.coins1.sprite, collectCoins, null, this); 

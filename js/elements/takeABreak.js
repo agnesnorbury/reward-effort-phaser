@@ -5,10 +5,10 @@ export default class BreakPanel {
         
     var titleTxtB = 'End of block!'; 
     var mainTxtB = ('You have finished this block of the game.\n'+
-                    'In total, you collected [color=#FFD700]'+nCoins+' coins[/color].\n\n'+
+                    'In this block, you collected [color=#FFD700]'+nCoins+' coins[/color].\n\n'+
                     'If you like, take a break now.\n\n'+
-                    'Press the continue button below \n'+
-                    'when you\'re ready to get back to the game.'); 
+                    'Press the [b]continue[/b] button below \n'+
+                    'when you\'re ready to get back to the game.');
     var buttonTxtB = 'continue';     
         
     var askBreakPanel = createBreakPanel(scene, titleTxtB, mainTxtB, buttonTxtB)

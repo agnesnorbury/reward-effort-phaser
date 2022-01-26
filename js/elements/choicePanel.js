@@ -95,8 +95,8 @@ var createDialog = function (scene, titleTxt, mainTxt, buttonTxt) {
                                                         }),
 
     actions: [
-        createLabel(scene, 'high route'),
-        createLabel(scene, 'low route')
+        createLabel(scene, 'route 1'),
+        createLabel(scene, 'route 2')
     ],
 
     space: {
