@@ -3,6 +3,9 @@
 // import some js from Pavlovia lib to enable data saving  [Pavlovia deployment only]
 import * as data from "../../lib/data-2020.2.js";
 
+// initiliaze img
+var playerimg;
+
 // this function extends Phaser.Scene and includes the core logic for the scene
 export default class TaskEndScene extends Phaser.Scene {
     constructor() {
@@ -98,8 +101,8 @@ export default class TaskEndScene extends Phaser.Scene {
         });
         
         // let's stick an img on too
-        const playerimg = this.add.image(0, 0, 'player', 14);  //(x, y, name, frameNo)
-        const playertweens = this.tweens.add({ 
+        playerimg = this.add.image(0, 0, 'player', 14);  //(x, y, name, frameNo)
+        this.tweens.add({ 
             targets: playerimg,
             x: { value: 700, duration: 4000, ease: 'Power2', repeat: 0 },
             y: { value: 400, duration: 6000, ease: 'Linear', repeat: 0 }
@@ -111,6 +114,7 @@ export default class TaskEndScene extends Phaser.Scene {
     
     nextScene() {
 //        console.log(psychoJS);         // check passing PsychoJS object between scenes worked [for Pavlovia debug]
+        playerimg.destroy();
         this.scene.start('PostTaskQuestions');
     } 
 }
