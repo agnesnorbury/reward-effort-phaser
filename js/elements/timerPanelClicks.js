@@ -45,7 +45,7 @@ export default class TimerPanel {
         
         // and at end of time limit call endTimer function (to end timer panel scene)
         var timedEvent2 = scene.time.addEvent({ delay: timeLimit, callback: endTimer, 
-                                                args: [scene, mainPanel],
+                                                args: [scene, mainPanel, practiceOrReal],
                                                 callbackScope: this });
     }
     
@@ -75,9 +75,14 @@ var endTimer = function(scene, mainPanel) {
     console.log(scene.pressCount);    // useful for debugging
     scene.registry.set('pressCount', scene.pressCount); 
     scene.registry.set('pressTimes', scene.pressTimes); 
-    // destroy timer panel elemnt
-    eventsCenter.emit('timesup'); 
-    mainPanel.scaleDownDestroy(100);
+    // destroy timer panel element
+    if (practiceOrReal == 0 ) {
+        eventsCenter.emit('practicetimesup'); 
+        mainPanel.scaleDownDestroy(100);
+    } else {
+        eventsCenter.emit('timesup'); 
+        mainPanel.scaleDownDestroy(100);
+    }
 }
 
 ////////////////////functions for making in-scene graphics//////////////////////////

@@ -186,9 +186,9 @@ export default class PracticeTask extends Phaser.Scene {
         // 2. After trial outcome (reject, accept+successful, accept+unsuccessful), 
         // player moves right again until they encounter the trial end point
         this.physics.add.collider(this.player.sprite, this.trialEndPoint, 
-                          function(){eventsCenter.emit('trialEndHit');}, null, this); // once the player has collided with invisible trial end point, emit event
+                          function(){eventsCenter.emit('practiceTrialEndHit');}, null, this); // once the player has collided with invisible trial end point, emit event
         // once this event us detected, perform the function trialEnd (only once)
-        eventsCenter.once('trialEndHit', pracTrialEnd, this);
+        eventsCenter.once('practiceTrialEndHit', pracTrialEnd, this);
         
         // // 3. if desired, add listener functions to pause game when focus taken away
         // // from game browser tab/window [necessary for mobile devices]
@@ -261,7 +261,7 @@ var doChoice = function () {
     this.player.sprite.anims.play('powerup', true);
     
     // until time limit reached:
-    eventsCenter.once('timesup', effortOutcome, this) 
+    eventsCenter.once('practicetimesup', effortOutcome, this) 
 };
 
 // 3. If participant accepts effort proposal, record button presses and see if they meet threshold
