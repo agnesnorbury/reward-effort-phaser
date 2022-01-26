@@ -10,7 +10,8 @@ var playerimg;
 export default class TaskEndScene extends Phaser.Scene {
     constructor() {
         super({
-            key: 'TaskEndScene'
+            key: 'TaskEndScene',
+            autoStart: false
         });
     }
 
