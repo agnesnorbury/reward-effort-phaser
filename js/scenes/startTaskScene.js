@@ -38,7 +38,7 @@ export default class StartTaskScene extends Phaser.Scene {
                     bottom: 10
                 }
             }),
-            content: this.add.text(0, 0, 
+            content: this.rexUI.add.BBCodeText(0, 0, 
                    ("You are now ready to start the main part\n" +
                     "of the game.\n\n"+
 
