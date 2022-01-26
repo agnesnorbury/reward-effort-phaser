@@ -102,7 +102,7 @@ export default class InstructionsScene extends Phaser.Scene {
                        "powering up your umbrella.\n\n" + 
 
                        " When you are ready,\n" +
-                       "press [u]start practice[/u] to begin.\n");
+                       "press [b]start practice[/b] to begin.\n");
             buttonTxt = "start practice"
             pageNo = 3;
             this.instructionsPanel = new InstructionsPanel(this, 
