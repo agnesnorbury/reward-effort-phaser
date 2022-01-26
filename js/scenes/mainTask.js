@@ -35,7 +35,7 @@ var nCoins=0;
 var coinsText;
 var feedback;
 var feedbackTime = 1000;
-const blockLength = 3;         // 10 trials per block
+var blockLength;
 // initialize timing and response vars
 var trialStartTime;
 var choicePopupTime;
@@ -81,8 +81,8 @@ export default class MainTask extends Phaser.Scene {
         });
         
         // load trial type info from json array
-        this.load.json('trialTypes', './assets/trialTypesTest.json');  // for testing
-        //this.load.json('trialTypes', './assets/trialTypes.json');    // for deployment
+        //this.load.json('trialTypes', './assets/trialTypesTest.json');  // for testing
+        this.load.json('trialTypes', './assets/trialTypes.json');    // for deployment
     }
     
     create() {
@@ -117,7 +117,7 @@ export default class MainTask extends Phaser.Scene {
         for (var i = 0; i < 5; i++) {
             var x = Phaser.Math.RND.between(0, mapWidth);
             var y = gameHeight/2 + 40;        // only at ground height
-            if ( x <  280 || x > 990) {       // only place on grass tiles
+            if ( x <  280 || x > 1000) {       // only place on grass tiles
                 this.bushes.create(x, y, 'bush').setScale(0.5).refreshBody();
             }
         }
@@ -164,6 +164,7 @@ export default class MainTask extends Phaser.Scene {
         // load trial info (must be done within create())
         let trialTypes = this.cache.json.get('trialTypes');
         nTrials = trialTypes.reward1.length;
+        blockLength = Math.round(nTrials/4);    // 4 blocks of trials
         
         // get max press count from practice/callibration round
         let maxPressCount = this.registry.get('maxPressCount');
@@ -441,8 +442,8 @@ var trialEnd = function () {
                                      });
     console.log(this.registry.getAll());   // for debugging only
     
-    // For the sake of simplicity, save data for each trial separately
-    saveTrialData(this.registry.get(`trial${trial}`));    // [for Pavlovia deployment]
+   // For the sake of simplicity, save data for each trial separately
+   saveTrialData(this.registry.get(`trial${trial}`));    // [for Pavlovia deployment]
     
     // if end of block, display end of block screen
     if (((trial+1) % blockLength == 0)) {
