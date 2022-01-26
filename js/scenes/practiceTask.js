@@ -54,7 +54,7 @@ export default class PracticeTask extends Phaser.Scene {
     preload() {
         ////////////////////PRELOAD GAME ASSETS///////////////////////////////////
         // load tilemap and tileset created using Tiled (see below)
-        this.load.tilemapTiledJSON('map', './assets/tilemaps/tilemap0.json'); 
+        this.load.tilemapTiledJSON('pmap', './assets/tilemaps/tilemap0.json'); 
         this.load.image('tiles', './assets/tilesets/tiles_spritesheet_70px.png');
 
         // load player sprite
@@ -82,17 +82,17 @@ export default class PracticeTask extends Phaser.Scene {
     create() {
         ////////////////////////CREATE WORLD//////////////////////////////////////
         // game world created in Tiled (https://www.mapeditor.org/)
-        // import tilemap
-        var map = this.make.tilemap({ key: "map" });
-        var tileset = map.addTilesetImage("tiles_spritesheet", "tiles"); // first arg must be name used for the tileset in Tiled
+        // import practice world tilemap
+        var pmap = this.make.tilemap({ key: "pmap" });
+        var tileset = pmap.addTilesetImage("tiles_spritesheet", "tiles"); // first arg must be name used for the tileset in Tiled
 
         // grab some size variables that will be helpful later
         gameHeight = this.sys.game.config.height;
         gameWidth = this.sys.game.config.width;
-        mapWidth = map.widthInPixels;
+        mapWidth = pmap.widthInPixels;
 
         // import scene layers (using names set up in Tiled)
-        platforms = map.createStaticLayer("platforms", tileset, 0, 0);
+        platforms = pmap.createStaticLayer("platforms", tileset, 0, 0);
         
         // set up collision property for tiles that can be walked on (set in Tiled)
         platforms.setCollisionByProperty({ collide: true });
