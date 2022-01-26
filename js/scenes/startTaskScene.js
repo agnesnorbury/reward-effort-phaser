@@ -39,15 +39,26 @@ export default class StartTaskScene extends Phaser.Scene {
                 }
             }),
             content: this.add.text(0, 0, 
-                                   ("  You are now ready to  \n\n" +
-                                    "start the main game!\n\n"+
-   
-                                    "When you are ready, press the\n"+
-                                    "button below to start!\n\n"),
-                                   
-                                   {fontSize: '18px',
-                                    align: 'center',
-                                    color: '#000000'}),
+                   ("You are now ready to start the main part\n" +
+                    "of the game.\n\n"+
+
+                    "Remember that from now on, [img=coin] [color=#FFD700]every coin\n"+
+                    " you collect[/color] [img=coin] will count towards your bonus. \n\n"+
+                    
+                    "The game will take [color=#d0f4f7]about 10 minutes[/color] to play\n"+
+                    "(whatever options you choose, it will take the\n"+
+                    "same amount of time to finish).\n\n"+
+                    
+                    "It is divided up into [color=#d0f4f7]4 'blocks'[/color] of choices.\n"+
+                    "  You can choose to take a break for as long as  \n"+
+                    "you like between each block.\n\n"+
+
+                    "When you are ready, [b]press the\n"+
+                    "button[/b] below to start!\n\n"),
+                   {fontSize: '18px',
+                    align: 'center',
+                    color: '#000000'
+                   }),
             actions: [
                 createLabel(this, 'start game')
             ],
