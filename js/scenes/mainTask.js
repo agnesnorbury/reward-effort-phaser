@@ -281,7 +281,7 @@ var doChoice = function () {
     // if participant chooses the high effort option
     if (choice == 'high route') {      
         // timer panel pops up  
-        this.timerPanel = new TimerPanel(this, decisionPointX+20, gameHeight/2-160, effortTime, trialEffort1) 
+        this.timerPanel = new TimerPanel(this, decisionPointX+20, gameHeight/2-160, effortTime, trialEffort1, practiceOrReal) 
         // and play player 'power-up' animation
         this.player.sprite.anims.play('powerup', true);
         // until time limit reached:
@@ -289,7 +289,7 @@ var doChoice = function () {
         }
     else {  // if participant chooses the low effort option
         // timer panel pops up  
-        this.timerPanel = new TimerPanel(this, decisionPointX+20, gameHeight/2-160, effortTime, trialEffort2) 
+        this.timerPanel = new TimerPanel(this, decisionPointX+20, gameHeight/2-160, effortTime, trialEffort2, practiceOrReal) 
         // and play player 'power-up' animation
         this.player.sprite.anims.play('powerup', true);
         // until time limit reached:

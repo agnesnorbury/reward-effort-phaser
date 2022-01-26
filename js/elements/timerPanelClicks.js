@@ -70,7 +70,7 @@ var updateTimer = function(scene, trialEffort, timeText, timeLimit, mainPanel, p
     mainPanel.children[1].setValue(scene.pressCount/trialEffort);  // = mainPanel.progressBar
 }
 
-var endTimer = function(scene, mainPanel) {
+var endTimer = function(scene, mainPanel, practiceOrReal) {
     // log final press count
     console.log(scene.pressCount);    // useful for debugging
     scene.registry.set('pressCount', scene.pressCount); 
