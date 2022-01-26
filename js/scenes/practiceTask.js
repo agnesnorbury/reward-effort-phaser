@@ -239,7 +239,8 @@ var displayInfoPanel = function () {
     let mainTxt = ("Press the [color=#e45404]POWER[/color] button as\n"+
                    "fast as you can, until the power bar\n"+
                    "shows you are [color=#e45404]100% charged[/color].\n\n"+
-                   "More power will allow you to collect more gems!\n\n"+
+                   "More power will allow you to\n"+
+                   "collect more gems!\n\n"+
                    "When you are ready,\n"+
                    "press the button below to start!");
     let buttonTxt = "ready";
