@@ -167,7 +167,7 @@ export default class MainTask extends Phaser.Scene {
         
         // get max press count from practice/callibration round
         let maxPressCount = this.registry.get('maxPressCount');
-        let maxEff = trialTypes.effort1.max;
+        let maxEff = Math.max(...trialTypes.effort1);
         var sf = maxPressCount/maxEff;
         
         // set the two trial options info from trial number
