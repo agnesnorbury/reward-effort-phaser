@@ -205,13 +205,12 @@ var createProgressBar = function(scene, trialEffort, backgrCol){
         
         text: scene.rexUI.add.BBCodeText(0, 0, '', {
             fontSize: '20px', fixedWidth: 50, fixedHeight: 45,
-            valign: 'center', halign: 'center'
+            valign: 'center', halign: 'center', color: '#e45404'
         }),
         
         valuechangeCallback: function (newValue, oldValue, progressBar, trialEffort) {
-            progressBar.text = (Math.round(newValue*100))+'%';
-        },
-        
+            progressBar.text = '[b]'+(Math.round(newValue*100))+'%[/b]';
+        }
     })
     .setValue(0, 0, 1)  // initialize value at 0, on scale from 0 to 1
     .layout();
