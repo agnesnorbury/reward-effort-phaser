@@ -54,8 +54,8 @@ export default class PracticeTask extends Phaser.Scene {
     preload() {
         ////////////////////PRELOAD GAME ASSETS///////////////////////////////////
         // load tilemap and tileset created using Tiled (see below)
-        this.load.tilemapTiledJSON('pmap', './assets/tilemaps/tilemap0.json'); 
-        this.load.image('tiles', './assets/tilesets/tiles_spritesheet_70px.png');
+        this.load.tilemapTiledJSON('pmap', './assets/tilemaps/tilemap-practice.json'); 
+        this.load.image('tiles', './assets/tilesets/tiles_edited_70px_extruded.png');
 
         // load player sprite
         this.load.spritesheet('player', './assets/spritesheets/player1.png', { 
@@ -84,7 +84,7 @@ export default class PracticeTask extends Phaser.Scene {
         // game world created in Tiled (https://www.mapeditor.org/)
         // import practice world tilemap
         var pmap = this.make.tilemap({ key: "pmap" });
-        var tileset = pmap.addTilesetImage("tiles_spritesheet", "tiles"); // first arg must be name used for the tileset in Tiled
+        var tileset = pmap.addTilesetImage("tiles_edited_70px_extruded", "tiles"); // first arg must be name used for the tileset in Tiled
 
         // grab some size variables that will be helpful later
         gameHeight = this.sys.game.config.height;
@@ -101,19 +101,19 @@ export default class PracticeTask extends Phaser.Scene {
         this.rocks1 = this.physics.add.staticGroup();
         for (var i = 0; i < 2; i++) {
             var x = Phaser.Math.RND.between(0, mapWidth);
-            var y = gameHeight/2 + 78;        // only at ground height
+            var y = gameHeight/2 + 80;        // only at ground height
             this.rocks1.create(x, y, 'rock1').setScale(1.2).refreshBody();
         }
         this.rocks2 = this.physics.add.staticGroup();
         for (var i = 0; i < 2; i++) {
             var x = Phaser.Math.RND.between(0, mapWidth);
-            var y = gameHeight/2 + 78;        // only at ground height
+            var y = gameHeight/2 + 80;        // only at ground height
             this.rocks2.create(x, y, 'rock2').setScale(1.2).refreshBody();
         }
         this.plants = this.physics.add.staticGroup();
         for (var i = 0; i < 4; i++) {
             var x = Phaser.Math.RND.between(0, mapWidth);
-            var y = gameHeight/2 + 78;        // only at ground height
+            var y = gameHeight/2 + 80;        // only at ground height
             this.rocks2.create(x, y, 'plant').setScale(1.2).refreshBody();
         }
         

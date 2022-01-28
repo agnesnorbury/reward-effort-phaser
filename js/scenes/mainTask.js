@@ -60,8 +60,8 @@ export default class MainTask extends Phaser.Scene {
     preload() {
         ////////////////////PRELOAD GAME ASSETS///////////////////////////////////
         // load tilemap and tileset created using Tiled (see below)
-        this.load.tilemapTiledJSON('map', './assets/tilemaps/tilemap1.json'); 
-        this.load.image('tiles', './assets/tilesets/tiles_spritesheet_70px.png');
+        this.load.tilemapTiledJSON('map', './assets/tilemaps/tilemap-main.json'); 
+        this.load.image('tiles', './assets/tilesets/tiles_edited_70px_extruded.png');
 
         // load player sprite
         this.load.spritesheet('player', './assets/spritesheets/player1.png', { 
@@ -73,6 +73,7 @@ export default class MainTask extends Phaser.Scene {
         this.load.image('cloud1', './assets/imgs/cloud1.png');
         this.load.image('bush', './assets/imgs/bush.png');
         this.load.image('button', './assets/imgs/button.png');
+        this.load.image('sign', './assets/imgs/sign.png');    // and sign for decision point
 
         // load animated coin sprite (these will represent offered reward level)
         this.load.spritesheet('coin', './assets/spritesheets/coin.png', { 
@@ -90,7 +91,7 @@ export default class MainTask extends Phaser.Scene {
         // game world created in Tiled (https://www.mapeditor.org/)
         // import tilemap
         var map = this.make.tilemap({ key: "map" });
-        var tileset = map.addTilesetImage("tiles_spritesheet", "tiles"); // first arg must be name used for the tileset in Tiled
+        var tileset = map.addTilesetImage("tiles_edited_70px_extruded", "tiles"); // first arg must be name used for the tileset in Tiled
 
         // grab some size variables that will be helpful later
         gameHeight = this.sys.game.config.height;
@@ -100,7 +101,6 @@ export default class MainTask extends Phaser.Scene {
         // import scene layers (using names set up in Tiled)
         platforms = map.createStaticLayer("platforms", tileset, 0, 0);
         bridge = map.createStaticLayer("bridge", tileset, 0, 0);
-        const decs = map.createStaticLayer("decs", tileset, 0, 0);
         
         // set up collision property for tiles that can be walked on (set in Tiled)
         platforms.setCollisionByProperty({ collide: true });
@@ -121,6 +121,7 @@ export default class MainTask extends Phaser.Scene {
                 this.bushes.create(x, y, 'bush').setScale(0.5).refreshBody();
             }
         }
+        this.sign = this.add.image(decisionPointX, gameHeight/2+18, 'sign');
         
         // set the boundaries of the world
         this.physics.world.bounds.width = mapWidth;
