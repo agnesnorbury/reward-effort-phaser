@@ -72,12 +72,12 @@ export default class InstructionsScene extends Phaser.Scene {
         ///////////////////PAGE TWO////////////////////
         eventsCenter.once('page1complete', function () {
             mainTxt = ("    Different routes give you the chance to    \n"+
-                       "collect different numbers of [img=coin] [color=#FFD700]coins[/color] [img=coin],\n" +
+                       "collect different numbers of [img=coin] [b][color=#FFD700]coins[/color][/b] [img=coin],\n" +
                        "which will be converted to bonus reward\n"+
                        "at the end of the game!\n\n" +  
 
                        "However, different routes also require\n"+
-                       "different amounts of [img=button] [color=#e45404]power[/color] [img=button] to\n"+
+                       "different amounts of [img=button] [b][color=#e45404]power[/color][/b] [img=button] to\n"+
                        "your magic umbrella, in order\n"+
                        "to get across...\n\n");
             pageNo = 2;
