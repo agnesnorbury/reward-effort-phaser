@@ -149,7 +149,7 @@ export default class MainTask extends Phaser.Scene {
         // add coin count text in a fixed position on the screen
         coinsText = this.add
             .text(gameWidth-160, 16, "coins: "+nCoins, {
-                font: "18px monospace",
+                font: "20px monospace",
                 fill: "#FFD700",
                 padding: { x: 20, y: 10 },
                 backgroundColor: "#000000"

@@ -142,7 +142,7 @@ export default class PracticeTask extends Phaser.Scene {
         // add coin count text in a fixed position on the screen
         gemText = this.add
             .text(gameWidth-160, 16, "gems: "+nGems, {
-                font: "18px monospace",
+                font: "20px monospace",
                 fill: "#fc94c4",
                 padding: { x: 20, y: 10 },
                 backgroundColor: "#000000"
@@ -238,7 +238,7 @@ var displayInfoPanel = function () {
     let titleTxt = ("Practice "+(pracTrial+1)+" of "+nPracTrials+"!");
     let mainTxt = ("Press the [color=#ffffff]POWER[/color] button as\n"+
                    "fast as you can, until the power bar\n"+
-                   "shows you are [color=#e45404]100% charged[/color].\n\n"+
+                   "shows you are [color=#ffffff]100% charged[/color].\n\n"+
                    "More power will allow you to\n"+
                    "collect more gems!\n\n"+
                    "When you are ready,\n"+
