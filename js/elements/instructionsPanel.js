@@ -72,7 +72,8 @@ var createDialog = function (scene, pageNo, titleTxt, mainTxt, buttonTxt) {
     }),
 
     content: scene.rexUI.add.BBCodeText(0, 0, mainTxt, {
-        fontSize: "20px",
+        //fontSize: "20px",
+        font: '20px monospace',
         align: 'center',
         color: '#000',
         underline: {color: '#000',
