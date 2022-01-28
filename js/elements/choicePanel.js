@@ -80,7 +80,7 @@ var createDialog = function (scene, titleTxt, mainTxt, buttonTxt) {
     title: scene.rexUI.add.label({
         background: scene.rexUI.add.roundRectangle(0, 0, 100, 40, 20, titleCol),
         text: scene.add.text(0, 0, titleTxt, {
-            fontSize: '24px'
+            fontSize: '22px'
             }),
         align: 'center',
         space: {
@@ -91,7 +91,9 @@ var createDialog = function (scene, titleTxt, mainTxt, buttonTxt) {
         }
     }),
 
-    content: scene.rexUI.add.BBCodeText(0, 0, mainTxt, {fontSize: '18px', align: 'center' //color: '#222222'
+    content: scene.rexUI.add.BBCodeText(0, 0, mainTxt, {//fontSize: '18px', 
+                                                        font: '20px monospace', 
+                                                        align: 'center' //color: '#222222'
                                                         }),
 
     actions: [
@@ -127,7 +129,8 @@ var createLabel = function (scene, text) {
     return scene.rexUI.add.label({
         background: scene.rexUI.add.roundRectangle(0, 0, 0, 40, 20, buttonCol),
         text: scene.add.text(0, 0, text, {
-            fontSize: '20px'
+            //fontSize: '20px',
+            font: '20px monospace',
         }),
         align: 'center',
         width: 40,
