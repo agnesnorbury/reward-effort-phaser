@@ -236,7 +236,7 @@ var displayInfoPanel = function () {
     
     // popup choice panel with relevant trial info
     let titleTxt = ("Practice "+(pracTrial+1)+" of "+nPracTrials+"!");
-    let mainTxt = ("Press the [color=#e45404]POWER[/color] button as\n"+
+    let mainTxt = ("Press the [color=#ffffff]POWER[/color] button as\n"+
                    "fast as you can, until the power bar\n"+
                    "shows you are [color=#e45404]100% charged[/color].\n\n"+
                    "More power will allow you to\n"+
