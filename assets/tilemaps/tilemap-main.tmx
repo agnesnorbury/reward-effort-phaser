@@ -38,7 +38,7 @@
   </tile>
   <tile id="6">
    <properties>
-    <property name="collide" type="bool" value="true"/>
+    <property name="collide" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="7">
@@ -98,12 +98,12 @@
   </tile>
   <tile id="18">
    <properties>
-    <property name="collide" type="bool" value="true"/>
+    <property name="collide" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="19">
    <properties>
-    <property name="collide" type="bool" value="true"/>
+    <property name="collide" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="20">
