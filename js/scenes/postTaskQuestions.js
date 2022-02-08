@@ -33,39 +33,41 @@ export default class PostTaskQuestions extends Phaser.Scene {
         // let's do this a long-winded way for easiness...[should be a function]
         var gamePhase = 'postTask';
         ///////////////////QUESTION ONE////////////////////
-        var mainTxt = '   How much did you want to collect coins?   \n\n\n\n\n'+
-                      'Please rate from 0 to 100\n'+ 
-                      'on the scale below, where\n\n'+
-                      '  0 =             and           100 = \n'+  
-                      '"not at all"                     "a lot"  '
+        var mainTxt = 'During the task, how much did you [b]want\n'+ 
+                      'to collect the coins[/b]?\n\n\n\n'+
+                      'Please rate from 0 to 100 on the scale\n'+ 
+                      'below, where\n\n'+
+                      '    0 =               and                100 = \n'+  
+                      '"not at all"                            "a lot"  '
         var questionNo = 1;
         
         this.questionPanel = new QuestionPanel(this, gameWidth/2, gameHeight/2, 
                                                gamePhase, questionNo, mainTxt);
-        img = this.add.image(gameWidth/2, gameHeight/2-75, 'coin');
+        img = this.add.image(gameWidth/2, gameHeight/2-72, 'coin');
         img.setScale(2);
         
         ///////////////////QUESTION TWO////////////////////
         this.events.once(gamePhase+'question1complete', function () {
             img.destroy();
-            //saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
-            mainTxt = 'How happy were you when you collected a coin?\n\n\n\n\n\n'+
-                      'Please rate from 0 to 100\n'+ 
-                      'on the scale below, where\n\n'+
-                      ' 0 =              and           100 = \n'+  
-                      '"not at all"                     "a lot"  '
+            saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
+            mainTxt = 'During the task, how [b]happy were you[/b]\n'+ 
+                      'when you collected a coin?\n\n\n\n'+
+                      'Please rate from 0 to 100 on the scale\n'+ 
+                      'below, where\n\n'+
+                      '    0 =               and                100 = \n'+  
+                      '"not at all"                            "a lot"  '
             questionNo = 2;
             
             this.questionPanel = new QuestionPanel(this, gameWidth/2, gameHeight/2, 
                                                    gamePhase, questionNo, mainTxt);
-            img = this.add.image(gameWidth/2, gameHeight/2-75, 'coin');
+            img = this.add.image(gameWidth/2, gameHeight/2-72, 'coin');
             img.setScale(2);
         }, this);        
         
         // end scene
         this.events.once(gamePhase+'question2complete', function () {
             img.destroy();
-            //saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
+            saveTrialData(this.registry.get(`${gamePhase}question${questionNo}`));
             this.nextScene();
         }, this);
         
@@ -76,7 +78,7 @@ export default class PostTaskQuestions extends Phaser.Scene {
     
     nextScene() {
         //console.log(psychoJS);         // check passing PsychoJS exp object between scenes worked
-        //psychoJS.experiment.save();      // saves all experiment data and signals exp end to Pavlovia
+        psychoJS.experiment.save();      // saves all experiment data and signals exp end to Pavlovia
         this.scene.start('TheEnd');
     } 
 }

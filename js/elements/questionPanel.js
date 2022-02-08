@@ -83,8 +83,8 @@ var createDialog = function (scene, gamePhase, questionNo, mainTxt, buttonTxt) {
         }
     }),
 
-    content: scene.add.text(0, 0, mainTxt, {
-        fontSize: '18px',
+    content: scene.rexUI.add.BBCodeText(0, 0, mainTxt, {
+        font: '20px monospace',
         align: 'center'
     }),
 
@@ -136,7 +136,7 @@ var createLabel = function (scene, text) {
 ////////number bar//////////////////////////////////
 var createNumberBar = function (scene) {
     var numberBar = scene.rexUI.add.numberBar({ 
-        width: 512,                 // fixed width slider
+        width: 494,                 // fixed width slider
         orientation: 'horizontal',
 
         background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 20, 0x815532),
