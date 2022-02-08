@@ -142,7 +142,7 @@ export default class PracticeTask extends Phaser.Scene {
         // add coin count text in a fixed position on the screen
         gemText = this.add
             .text(gameWidth-160, 16, "gems: "+nGems, {
-                font: "20px monospace",
+                font: "18px monospace",
                 fill: "#fc94c4",
                 padding: { x: 20, y: 10 },
                 backgroundColor: "#000000"
