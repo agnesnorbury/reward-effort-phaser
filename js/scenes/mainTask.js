@@ -82,8 +82,8 @@ export default class MainTask extends Phaser.Scene {
         });
         
         // load trial type info from json array
-        //this.load.json('trialTypes', './assets/trialTypesTest.json');  // for testing
-        this.load.json('trialTypes', './assets/trialTypes.json');    // for deployment
+        //this.load.json('trials', './assets/trialsTest.json');  // for testing
+        this.load.json('trials', './assets/trial.json');    // for deployment
     }
     
     create() {
@@ -163,8 +163,8 @@ export default class MainTask extends Phaser.Scene {
         
         //////////////////////////GET TRIAL INFO//////////////////////////////////  
         // load trial info (must be done within create())
-        let trialTypes = this.cache.json.get('trialTypes');
-        nTrials = trialTypes.reward1.length;
+        let trials = this.cache.json.get('trials');
+        nTrials = trials.reward1.length;
         blockLength = Math.round(nTrials/4);    // 4 blocks of trials
         
         // get max press count from practice/callibration round
@@ -175,10 +175,10 @@ export default class MainTask extends Phaser.Scene {
         }
         // set the two trial options info from trial number
         // effort values are now coded as proportions of max press count (max=0.95)
-        trialReward1 = trialTypes.reward1[trial];
-        trialEffort1 = Math.round(trialTypes.effort1[trial]*maxPressCount);
-        trialReward2 = trialTypes.reward2[trial];
-        trialEffort2 = Math.round(trialTypes.effort2[trial]*maxPressCount);
+        trialReward1 = trials.reward1[trial];
+        trialEffort1 = Math.round(trials.effort1[trial]*maxPressCount);
+        trialReward2 = trials.reward2[trial];
+        trialEffort2 = Math.round(trials.effort2[trial]*maxPressCount);
         
         // log trial start time
         trialStartTime = Math.round(this.time.now);
