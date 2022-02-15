@@ -83,7 +83,7 @@ export default class MainTask extends Phaser.Scene {
         
         // load trial type info from json array
         //this.load.json('trials', './assets/trialsTest.json');  // for testing
-        this.load.json('trials', './assets/trial.json');    // for deployment
+        this.load.json('trials', './assets/trials.json');    // for deployment
     }
     
     create() {
