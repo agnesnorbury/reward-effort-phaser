@@ -168,21 +168,17 @@ export default class MainTask extends Phaser.Scene {
         blockLength = Math.round(nTrials/4);    // 4 blocks of trials
         
         // get max press count from practice/callibration round
-        // make max press count recorded during calibration = 105% max effort
-        let maxPressCount = this.registry.get('maxPressCount')/1.05;  
+        let maxPressCount = this.registry.get('maxPressCount');  
         // and enforce minimum to guard against gaming
         if (maxPressCount < 20) {
             maxPressCount = 20;
         }
-        // work out scaling factor to apply to oreset effort values
-        let maxEff = Math.max(...trialTypes.effort1);
-        var sf = maxPressCount/maxEff;
-        
         // set the two trial options info from trial number
+        // effort values are now coded as proportions of max press count (max=0.95)
         trialReward1 = trialTypes.reward1[trial];
-        trialEffort1 = Math.round(trialTypes.effort1[trial]*sf);
+        trialEffort1 = Math.round(trialTypes.effort1[trial]*maxPressCount);
         trialReward2 = trialTypes.reward2[trial];
-        trialEffort2 = Math.round(trialTypes.effort2[trial]*sf);
+        trialEffort2 = Math.round(trialTypes.effort2[trial]*maxPressCount);
         
         // log trial start time
         trialStartTime = Math.round(this.time.now);
