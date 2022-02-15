@@ -25,9 +25,9 @@ const playerVelocity = 1000;   // baseline player velocity (rightward)
 // initialize practice task vars
 var pracTrial = 0;
 var nGems = 0;
-var pracTrialRewards = [2, 4, 6, 8, 10];
-var pracTrialEfforts = [10, 15, 20, 25, 35];
-var gemHeights       = [315, 255, 195, 135, 75];
+var pracTrialRewards = [  4,   2,   6,  10,   8];
+var pracTrialEfforts = [ 18,  16,  20,  32,  24];
+var gemHeights       = [255, 315, 195,  85, 135];
 var nPracTrials = pracTrialRewards.length;
 var pracTrialReward;
 var pracTrialEffort;
@@ -236,17 +236,14 @@ var displayInfoPanel = function () {
     
     // popup choice panel with relevant trial info
     let titleTxt = ("Practice "+(pracTrial+1)+" of "+nPracTrials+"!");
-    let mainTxt = ("Press the [color=#ffffff]POWER[/color] button as\n"+
-                   "fast as you can, until the power bar\n"+
-                   "shows you are [color=#ffffff]100% charged[/color].\n\n"+
-                   "More power will allow you to\n"+
-                   "collect more gems!\n\n"+
-                   "When you are ready,\n"+
-                   "press the button below to start!");
+    let mainTxt = ("Press the [color=#ffffff]POWER[/color] button as fast as you can,\n"+
+                   "until the power bar shows you are [color=#ffffff]100% charged[/color].\n\n"+
+                   "More power will allow you to collect more gems!\n\n"+
+                   " When you are ready, press the button below. ");
     let buttonTxt = "ready";
     let pageNo = 4;
     this.instructionsPanel = new InstructionsPanel(this, 
-                                                   decisionPointX+40, gameHeight/2-120, 
+                                                   decisionPointX+20, gameHeight/2-120, 
                                                    pageNo, titleTxt, mainTxt, buttonTxt);
     
     // once choice is entered, get choice info and route to relevant next step
